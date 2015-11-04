@@ -10,6 +10,7 @@ var main ={
    init:function() {
      main.styling();
      main.events();
+
    },
 
     styling: function(){
@@ -51,12 +52,11 @@ var main ={
         main.checkUsers(userEntry,avatarEntry);
         $('.page1').addClass('hidden');
         $('.container').removeClass('hidden');
+         main.startFixedWindowAtBottom('chatfield');
         main.grabUsers();
 
             });
    },
-
-
 
 
   startFixedWindowAtBottom: function(item) {
@@ -78,6 +78,7 @@ var main ={
    timeRefresh();
  },
 
+
   loadUsers:function(data){
     var tmpl = _.template(templates.activeUser);
     var array = [];
@@ -87,6 +88,7 @@ var main ={
     })
 
   },
+
 
 
 
@@ -163,6 +165,7 @@ checkUsers:function(inputUsername,avatarEntry){
      data: user,
      success:function(data){
        console.log(data);
+
      },
      failure:function(data){
        console.log("You are a failure" + data);
@@ -207,6 +210,7 @@ grabMessages: function() {
    url: main.urlMessages,
    success: function(data) {
      main.loadMessages(data);
+
    },
    failure: function(data) {
      console.log("FAILURE: ", data);

@@ -21,7 +21,7 @@ body {
   border-radius: 20px; }
   .chatbox .chatfield {
     height: 500px;
-    overflow: scroll; }
+    overflow-y: scroll; }
 
 .hidden {
   display: none; }
@@ -60,7 +60,8 @@ aside {
   height: 200px;
   width: 400px;
   margin: 15% auto;
-  padding-top: 30px; }
+  padding-top: 30px;
+  margin-top: 10px; }
 
 .signInSubmit {
   margin-left: 41%; }
@@ -73,3 +74,21 @@ aside {
 .usermessage {
   background-color: white;
   border-radius: 10px; }
+
+.offline {
+  margin-top: 268px;
+  display: block;
+  margin: 2% auto;
+  padding: 2%; }
+
+.usermessage {
+  background-color: white;
+  border-radius: 10px; }
+
+.title {
+  color: white;
+  text-align: center;
+  font-size: 100px; }
+
+.page1 {
+  margin-top: 120px; }

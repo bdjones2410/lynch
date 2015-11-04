@@ -2,7 +2,7 @@ $(document).ready(function() {
    main.init();
 });
 
-
+var curData;
 var main ={
     urlMessages: "https://tiny-tiny.herokuapp.com/collections/lynchberg/",
     urlUsers:"https://tiny-tiny.herokuapp.com/collections/lynchUser/",
@@ -27,17 +27,13 @@ var main ={
        var data ={
          username: "cglane",
          message: messageText,
-         avatar: "http://31.media.tumblr.com/fffd0f8677c5f75e47bfbaa9a17c44e9/tumblr_neyjbn8JGm1texwuzo1_400.gif (27KB)",
+         avatar: "http://31.media.tumblr.com/fffd0f8677c5f75e47bfbaa9a17c44e9/tumblr_neyjbn8JGm1texwuzo1_400.gif",
        };
        main.postMessage(data);
 
        $(this).siblings('input[name="message"]').val(' ');
      });
-     $('.textbox').keypress(function(e){
-      if(e.which == 13){//Enter key pressed
-          $('.subbut').click();//Trigger search button click event
-      }
-    });
+
     $('.chatbox').on('click','.delete-button',function(){
       var id = $(this).parent('div').attr('id');
       main.deleteMessages(id);
@@ -65,6 +61,7 @@ var main ={
    $('.chatfield').html(html);
 
  },
+
 
  loadUsers:function(data){
    var tmpl = _.templates(templates.activeUsers);

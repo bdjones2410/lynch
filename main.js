@@ -2,7 +2,7 @@ $(document).ready(function() {
    main.init();
 });
 
-
+var curData;
 var main ={
      urlMessages: "https://tiny-tiny.herokuapp.com/collections/lynchberg/",
      urlUsers:"https://tiny-tiny.herokuapp.com/collections/lynchBros/",
@@ -19,7 +19,6 @@ var main ={
 
 
    events:function(){
-
 
 
       main.grabMessages();
@@ -40,12 +39,6 @@ var main ={
 
       });
 
-
-    //  $('.textbox').keypress(function(e){
-    //   if(e.which == 13){//Enter key pressed
-    //       $('.subbut').click();//Trigger search button click event
-    //   }
-    // });
     $('.chatbox').on('click','.delete-button',function(){
       var id = $(this).parent('div').attr('id');
       main.deleteMessages(id);
@@ -66,32 +59,23 @@ var main ={
    },
 
 
-
-  //    $('section').on('click','.signInSubmit', function(e) {
-  //      e.preventDefault();
-  //      $('.page1').addClass('hidden');
-  //      $('.container').removeClass('hidden');
-  //      main.startFixedWindowAtBottom('chatfield');
-  //      var userEntry = $(this).siblings('input[name="username"]').val();
-  //      var avatarEntry = $(this).siblings('input[name="avatar"]').val();
-  //    });
-  // },
-
-
-
   startFixedWindowAtBottom: function(item) {
     var div = document.getElementsByClassName(item);
     div[0].scrollTop = div[0].scrollHeight;
   },
 
  loadMessages:function(data){
-   var html = " ";
+   $('.generatedChat').remove();
    var tmpl = _.template(templates.userInput);
-   _.each(data, function(el){
-     html += tmpl(el);
+   var dataArray = data;
+   var loadMsg = dataArray.slice(0,15);
+   _.each(loadMsg, function(el){
+     $('.chatfield').prepend(tmpl(el));
  });
-   $('.chatfield').html(html);
 
+   var timeRefresh = function(){ window.setTimeout(main.grabMessages, 2000);
+   }
+   timeRefresh();
  },
 
 

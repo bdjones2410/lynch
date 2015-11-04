@@ -67,7 +67,9 @@ var main ={
  loadMessages:function(data){
    $('.generatedChat').remove();
    var tmpl = _.template(templates.userInput);
-   _.each(data, function(el){
+   var dataArray = data;
+   var loadMsg = dataArray.slice(0,15);
+   _.each(loadMsg, function(el){
      $('.chatfield').prepend(tmpl(el));
  });
 

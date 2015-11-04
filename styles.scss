@@ -13,14 +13,14 @@ border-radius: 20px;
 }
 
 .users {
-background-color: #f9f2e6  ;
-height: 550px;
-  border-radius: 20px;
-  width: 25%;
-  margin-left: 20px;
-  overflow: scroll;
-
+ background-color: #f9f2e6 ;
+ height: 550px;
+   border-radius: 20px;
+   width: 25%;
+   margin-left: 20px;
+  //  overflow: scroll;
 }
+
 .chatbox {
 background-color: #f9f2e6  ;
 min-height: 550px;
@@ -28,13 +28,11 @@ border-radius: 20px;
 
 
 
-   .chatfield {
 
-     height: 500px;
-       overflow-y: scroll;
-
-
-  }
+    .chatfield {
+      height: 500px;
+        overflow-y: scroll;
+   }
 
 }
 
@@ -82,14 +80,13 @@ font-size:1.2em;
 }
 
 .signIn {
-
- border-radius: 20px;
- background-color: #f9f2E6 ;
- height: 200px;
- width: 400px;
- margin: 15% auto;
- padding-top: 30px;
- margin-top: 10px;
+  border-radius: 20px;
+  background-color: #f9f2E6;
+  height: 200px;
+  width: 400px;
+  margin: 15% auto;
+  padding-top: 30px;
+  margin-top: 10px;
 
 }
 
@@ -98,7 +95,6 @@ margin-left: 41%;
 }
 
 .username, .avatar, .submit {
-
  display: block;
  margin: 2% auto;
  padding: 2%;}
@@ -114,18 +110,16 @@ display: block;
 margin: 2% auto;
 padding: 2%;}
 
-.usermessage {
-background-color: white;
-border-radius: 10px;
-}
+
 
 .title {
  color: white;
 text-align: center;
  font-size: 100px;
 
+
 }
 
 .page1 {
- margin-top: 120px;
+  margin-top: 120px;
 }

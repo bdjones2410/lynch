@@ -12,8 +12,7 @@ body {
   height: 550px;
   border-radius: 20px;
   width: 25%;
-  margin-left: 20px;
-  overflow: scroll; }
+  margin-left: 20px; }
 
 .chatbox {
   background-color: #f9f2e6;

@@ -20,19 +20,24 @@ var main ={
 
    events:function(){
 
-   $('.textbox').on('click', '.subbut',function(e) {
 
-       e.preventDefault();
-       var messageText = $(this).siblings('input[name="message"]').val();
-       var data ={
-         username: "cglane",
-         message: messageText,
-         avatar: "http://31.media.tumblr.com/fffd0f8677c5f75e47bfbaa9a17c44e9/tumblr_neyjbn8JGm1texwuzo1_400.gif",
-       };
-       main.postMessage(data);
+      main.grabMessages();
+      // Edit.events ();
+      $('.textbox').on('click', '.subbut',function(e) {
+        e.preventDefault();
+        var messageText = $(this).siblings('input[name="message"]').val();
+        var data ={
+          username: "lauren",
+          message: messageText,
+          avatar: "http://31.media.tumblr.com/fffd0f8677c5f75e47bfbaa9a17c44e9/tumblr_neyjbn8JGm1texwuzo1_400.gif",
+        };
 
-       $(this).siblings('input[name="message"]').val(' ');
-     });
+        main.postMessage(data);
+
+
+        $(this).siblings('input[name="message"]').val(' ');
+
+      });
 
     $('.chatbox').on('click','.delete-button',function(){
       var id = $(this).parent('div').attr('id');
@@ -50,16 +55,21 @@ var main ={
   },
 
 
-
+  startFixedWindowAtBottom: function(item) {
+    var div = document.getElementsByClassName(item);
+    div[0].scrollTop = div[0].scrollHeight;
+  },
 
  loadMessages:function(data){
-   var html = " ";
+   $('.generatedChat').remove();
    var tmpl = _.template(templates.userInput);
    _.each(data, function(el){
-     html += tmpl(el);
+     $('.chatfield').prepend(tmpl(el));
  });
-   $('.chatfield').html(html);
 
+   var timeRefresh = function(){ window.setTimeout(main.grabMessages, 2000);
+   }
+   timeRefresh();
  },
 
 
@@ -117,6 +127,8 @@ grabUsers:function(){
      console.log(resp);
      var tmpl = _.template(templates.userInput);
      $('.chatfield').append(tmpl(resp));
+     main.startFixedWindowAtBottom('chatfield');
+
    },
    failure: function(resp) {
      console.log("FAILURE", resp);
@@ -157,6 +169,6 @@ deleteAll:function(){
    success:function(){
      console.log('all deleted');
    }
- })
+ });
 }
 };

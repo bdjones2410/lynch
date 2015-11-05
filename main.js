@@ -2,8 +2,6 @@ $(document).ready(function() {
    main.init();
 });
 
-var Usr = "";
-var UsrImg = "";
 
 var curData;
 var main ={

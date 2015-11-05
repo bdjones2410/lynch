@@ -8,7 +8,7 @@ var UsrImg = "";
 var curData;
 var main ={
      urlMessages: "https://tiny-tiny.herokuapp.com/collections/lynchberg/",
-     urlUsers:"https://tiny-tiny.herokuapp.com/collections/lynchBros/",
+     urlUsers:"https://tiny-tiny.herokuapp.com/collections/lynchPawn/",
 
    init:function() {
      main.styling();
@@ -30,9 +30,9 @@ var main ={
         e.preventDefault();
         var messageText = $(this).siblings('input[name="message"]').val();
         var data ={
-          username: Usr,
+          username: localStorage.getItem('username'),
           message: messageText,
-          avatar: UsrImg,
+          avatar: localStorage.getItem('avatar'),
         };
 
         main.postMessage(data);
@@ -59,8 +59,32 @@ var main ={
         $('.container').removeClass('hidden');
          main.startFixedWindowAtBottom('chatfield');
         main.grabUsers();
-
             });
+
+      $('.curOnline').on('dblclick keypress','.activeUsers',function(e){
+        console.log($(this));
+        $(this).attr('contentEditable', true);
+        if(e.which === 13){
+        var user = $(this).closest('div').text();
+        var id = $(this).attr('id');
+        var avatar = $(this).attr('rel');
+        console.log(user)
+        console.log(id);
+        console.log(avatar);
+        // delete Users, add Users, clear page, then reload all users
+        localStorage.setItem('username',user);
+        localStorage.setItem('avatar',avatar);
+        main.deleteUsers(id);
+        data = {
+          username: user,
+          avatar: avatar,
+          status: "active",
+        }
+        main.postUsers(data);
+        $('.curOnline .activeUsers').remove();
+        main.grabUsers();
+          }
+      });
    },
 
 
@@ -126,6 +150,8 @@ checkUsers:function(inputUsername,avatarEntry){
         console.log("you may add me to database");
         main.postUsers(data);
         localStorage.setItem('username',inputUsername);
+        localStorage.setItem('avatar',avatarEntry);
+
       }else{
         console.log("try again");
       }
@@ -149,34 +175,8 @@ checkUsers:function(inputUsername,avatarEntry){
       }
     });
   },
-  deleteUsers:function(userId){
-      $.ajax({
-        url: main.urlUsers + userId,
-        method: 'DELETE',
-        success:function(data){
-          console.log(data + "deleted");
 
-        },
-        failure:function(){
-          console.log(data+ " :not deleted, idiot");
-        }
 
-      });
-  },
- postUsers:function(user){
-   $.ajax({
-     url:main.urlUsers,
-     method:'POST',
-     data: user,
-     success:function(data){
-       console.log(data);
-
-     },
-     failure:function(data){
-       console.log("You are a failure" + data);
-     }
-   });
- },
  deleteUsers:function(userId){
      $.ajax({
        url: main.urlUsers + userId,

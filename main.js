@@ -27,9 +27,9 @@ var main ={
         e.preventDefault();
         var messageText = $(this).siblings('input[name="message"]').val();
         var data ={
-          username: "lauren",
+          username: localStorage.getItem('username'),
           message: messageText,
-          avatar: "http://31.media.tumblr.com/fffd0f8677c5f75e47bfbaa9a17c44e9/tumblr_neyjbn8JGm1texwuzo1_400.gif",
+          avatar: localStorage.getItem('avatar'),
         };
 
         main.postMessage(data);
@@ -121,6 +121,7 @@ checkUsers:function(inputUsername,avatarEntry){
         console.log("you may add me to database");
         main.postUsers(data);
         localStorage.setItem('username',inputUsername);
+        localStorage.setItem('avatar',avatrEntry);
       }else{
         console.log("try again");
       }

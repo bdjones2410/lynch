@@ -2,6 +2,9 @@ $(document).ready(function() {
    main.init();
 });
 
+var Usr = "";
+var UsrImg = "";
+
 var curData;
 var main ={
      urlMessages: "https://tiny-tiny.herokuapp.com/collections/lynchberg/",
@@ -27,9 +30,9 @@ var main ={
         e.preventDefault();
         var messageText = $(this).siblings('input[name="message"]').val();
         var data ={
-          username: "lauren",
+          username: Usr,
           message: messageText,
-          avatar: "http://31.media.tumblr.com/fffd0f8677c5f75e47bfbaa9a17c44e9/tumblr_neyjbn8JGm1texwuzo1_400.gif",
+          avatar: UsrImg,
         };
 
         main.postMessage(data);
@@ -48,6 +51,8 @@ var main ={
         e.preventDefault();
         var userEntry = $(this).siblings('input[name="username"]').val();
         var avatarEntry = $(this).siblings('input[name="avatar"]').val();
+        Usr = userEntry;
+        UsrImg = avatarEntry;
         //check if user exists in database if not add to database
         main.checkUsers(userEntry,avatarEntry);
         $('.page1').addClass('hidden');
